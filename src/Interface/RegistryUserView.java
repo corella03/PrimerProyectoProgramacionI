@@ -57,7 +57,7 @@ public class RegistryUserView extends javax.swing.JFrame {
         boolean userExist = false;
         for (User object : Globals.user) 
         {
-            if(object.getID() == Integer.parseInt(ID) || object.getEmail().equals(email))
+            if(object.getID() == ID || object.getEmail().equals(email))
             {
                 JOptionPane.showMessageDialog(null, "This user is already registered.");
                 userExist = true;
@@ -118,29 +118,29 @@ public class RegistryUserView extends javax.swing.JFrame {
         Globals.typeUser = typeMerchantComboBox.getSelectedIndex();
         if(checkSixSpace(name, email, password, ID, age, country))
         {
-            if(checkNumber(ID) == true && checkNumber(age) == true)
+            if(checkNumber(age) == true)
             {
                 if(checkUserExistence(ID, email) != true )
                 {
                     switch (Globals.typeUser) 
                     {
                         case 0:
-                            Client newClient = new Client(name, Integer.parseInt(ID), Integer.parseInt(age),
-                                    email, country, password);
+                            Client newClient = new Client(name, ID, Integer.parseInt(age), email, country, password, Globals.typeUser);
                             Globals.clientList.add(newClient);
                             Globals.user.add(newClient);
                             break;
                         case 1:
-                            Merchant newMerchant = new Merchant(name, Integer.parseInt(ID), Integer.parseInt(age)
-                                    ,email, country, password);
+                            Merchant newMerchant = new Merchant(name, ID, Integer.parseInt(age), email, country, 
+                                    password, Globals.typeUser);
                             Globals.merchantList.add(newMerchant);
                             Globals.user.add(newMerchant);
                             break;
                         case 2:
                             if (checkThreeSpace(numberRegistration, businessName, businessReason))
                             {
-                                JuristicMerchant newJuristicMerchant = new JuristicMerchant(numberRegistration, businessName,
-                                        businessReason,name, Integer.parseInt(ID), Integer.parseInt(age),email, country, password );
+                                JuristicMerchant newJuristicMerchant = new JuristicMerchant(numberRegistration, 
+                                        businessName, businessReason, name, ID,Integer.parseInt(age), email, 
+                                        country, password, Globals.typeUser);
                                 Globals.juristicMerchantList.add(newJuristicMerchant);
                                 Globals.user.add(newJuristicMerchant);
                             }   break;
@@ -424,6 +424,7 @@ public class RegistryUserView extends javax.swing.JFrame {
 
     private void registryUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registryUserButtonActionPerformed
         createNewUser();
+        System.out.println(Globals.user.size());
     }//GEN-LAST:event_registryUserButtonActionPerformed
 
     private void typeMerchantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeMerchantComboBoxActionPerformed

@@ -12,10 +12,9 @@ import java.util.List;
  ** @date 2017-06-15
  **/
 public class Merchant extends User{
-    public Merchant(String name, int ID, int age, String email, String country, String password) 
-    {
-        super(name, ID, age, email, country, password);
-    }
+    public Merchant(String name, String ID, int age, String email, String country, String password, int type) {
+        super(name, ID, age, email, country, password, type);
+    }  
     @Override
     public List<Product> getTransactions() 
     {

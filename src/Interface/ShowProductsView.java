@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  ** @author Karla Vanessa Ballestero Castro
  ** @date 2017-06-27
  **/
-public class ShowProducts extends javax.swing.JFrame {
+public final class ShowProductsView extends javax.swing.JFrame {
     /**
      * Creates new form ShowProducts
      */
@@ -27,7 +27,7 @@ public class ShowProducts extends javax.swing.JFrame {
     public String  amount = "";
     public String status = "";
     Merchant seller;
-    public ShowProducts() {
+    public ShowProductsView() {
         initComponents();
         setLocationRelativeTo(null);
         initialView();
@@ -120,14 +120,14 @@ public class ShowProducts extends javax.swing.JFrame {
         String newPrice =priceTextField.getText();
         String newAmount = (String)amountSpinner.getValue().toString();
         String newStatus = (String) statusComboBox.getSelectedItem();
-         
         for (int i = 0; i < seller.producList.size(); i++)     
         {
             if (code.equals(seller.producList.get(i).getCode())) 
             {
                 if(!newName.isEmpty())
                 {
-                   seller.producList.get(i).setName(newName);
+                    //seller.producList.get(i).setName(seller.producList.get(i).getName());
+                    seller.producList.get(i).setName(newName);
                 }
                 if(!newCode.isEmpty())
                 {
@@ -155,8 +155,7 @@ public class ShowProducts extends javax.swing.JFrame {
             }
         }
         getTable();
-    }
-    
+    }  
     public Merchant getCurrentSeller(int type) {
         if(type == 1)
         {
@@ -356,20 +355,21 @@ public class ShowProducts extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel("com.birosoft.liquit.LiquitLookAndFeel");
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowProducts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowProductsView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowProducts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowProductsView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowProducts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowProductsView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowProducts.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowProductsView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowProducts().setVisible(true);
+                new ShowProductsView().setVisible(true);
             }
         });
     }

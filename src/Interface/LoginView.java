@@ -34,7 +34,7 @@ public class LoginView extends javax.swing.JFrame {
         MerchantOptionsView merchantOptions = new MerchantOptionsView();
         merchantOptions.setVisible(true);
     }        
-     public void ClientOptionsWindows()
+     public static void ClientOptionsWindows()
     {
         ClientOptionView clientOptions = new ClientOptionView();
         clientOptions.setVisible(true);
@@ -48,7 +48,6 @@ public class LoginView extends javax.swing.JFrame {
         emailTextField.setText("");
         passwordTextField.setText("");
     }
-    
     public boolean changeThePageIfLogin(User user, String email, String password,int type, int i){
         if(user.login(email,password))
         {
@@ -77,7 +76,7 @@ public class LoginView extends javax.swing.JFrame {
             for (int j = 0; j < Globals.merchantList.size(); j++) 
             {
                 Merchant merchant = Globals.merchantList.get(j);
-                if (changeThePageIfLogin(merchant, email, password,0, j)){
+                if (changeThePageIfLogin(merchant, email, password,1, j)){
                     MerchantOptionsWindows();
                     return;
                 }
@@ -85,7 +84,7 @@ public class LoginView extends javax.swing.JFrame {
             for(int m = 0; m <Globals.juristicMerchantList.size(); m++)
             {
                 JuristicMerchant juristicMerchant = Globals.juristicMerchantList.get(m);
-                if (changeThePageIfLogin(juristicMerchant, email, password,0, m)){
+                if (changeThePageIfLogin(juristicMerchant, email, password,2, m)){
                     MerchantOptionsWindows();
                     return;
                 }

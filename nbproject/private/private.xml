@@ -3,20 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Product.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ShowProducts.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/LoginView.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/RegistryUserView.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Merchant.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Globals.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Client.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/User.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/IHistory.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Review.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ProductRegistryView.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ShoppingCarView.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ClientOptionView.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/JuristicMerchant.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/MerchantOptionsView.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ShowProductForClientsView.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ClientProducts.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/IHistory.java</file>
         </group>
     </open-files>
 </project-private>

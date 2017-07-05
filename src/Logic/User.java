@@ -14,41 +14,41 @@ import java.util.ArrayList;
  **/
 public abstract class User implements IHistory{
     private String name;
-    private int ID;
+    private String ID;
     private int age;
-    private int numberOfRates;
     private String email;
     private String country;
     private String password;
-    public  List<Review> reviewList;
-    public  List<Product> producList;
-    public User(String name, int ID, int age, String email, String country, String password) 
-    {
-        this.numberOfRates = 0;
+    private int type;
+    public List<Review> reviewList;
+    public List<Product> producList;
+    public List<Product> shoppingCar;
+    private int numberOfRates;
+    public User(String name, String ID, int age, String email, String country, String password, int type) {
         this.name = name;
         this.ID = ID;
         this.age = age;
         this.email = email;
         this.country = country;
         this.password = password;
-        producList = new ArrayList<>();
+        this.type = type;
         reviewList = new ArrayList<>();
+        producList = new ArrayList<>();
+        shoppingCar = new ArrayList<>();
     }
     public boolean login(String email,String password) 
     {
         return this.email.equals(email) && this.password.equals(password);
     }
-    
     public void qualifyRating(User user,int rating, String comment) {
         Review review = new Review(comment, rating);
         user.reviewList.add(review);
     }
-    
     public String getName() 
     {
         return name;
     }
-    public int getID() 
+    public String getID() 
     {
         return ID;
     }
@@ -72,11 +72,15 @@ public abstract class User implements IHistory{
     {
         return password;
     }
+    public int getType() 
+    {
+        return type;
+    }
     public void setName(String name) 
     {
         this.name = name;
     }
-    public void setID(int ID) 
+    public void setID(String ID) 
     {
         this.ID = ID;
     }
@@ -100,4 +104,8 @@ public abstract class User implements IHistory{
     {
         this.password = password;
     } 
+    public void setType(int type) 
+    {
+        this.type = type;
+    }  
 }

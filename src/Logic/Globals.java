@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class Globals {
     public static List<User> user = new ArrayList<>();
     public static List<Client> clientList = new ArrayList<>();
-    public static List<Merchant> merchantList =new ArrayList<>();
-    public static List<JuristicMerchant> juristicMerchantList= new ArrayList<>();
+    public static List<Merchant> merchantList = new ArrayList<>();
+    public static List<JuristicMerchant> juristicMerchantList = new ArrayList<>();
     public static int typeUser;
     public static int userPosition;
     public static int optionsMerchant;

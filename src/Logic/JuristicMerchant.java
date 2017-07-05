@@ -14,14 +14,12 @@ public class JuristicMerchant extends Merchant{
     private String numberOfRegistration;
     private String businessName;
     private String businessReason;
-    public JuristicMerchant(String numberOfRegistration, String businessName, String businessReason, 
-            String name, int ID, int age, String email, String country, String password) 
-    {
-        super(name, ID, age, email, country, password);
+    public JuristicMerchant(String numberOfRegistration, String businessName, String businessReason, String name, String ID, int age, String email, String country, String password, int type) {
+        super(name, ID, age, email, country, password, type);
         this.numberOfRegistration = numberOfRegistration;
         this.businessName = businessName;
         this.businessReason = businessReason;
-    }
+    }  
     public String getNumberOfRegistration() 
     {
         return numberOfRegistration;

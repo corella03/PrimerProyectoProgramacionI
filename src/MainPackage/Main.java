@@ -22,11 +22,14 @@ public class Main {
     public static void main(String[] args) {
         LoginView login = new LoginView();
         login.setVisible(true);
-        Merchant mr =  new Merchant("Alonso", 0, 0, " ", "", " ");
+        Merchant mr =  new Merchant("Alonso", "0", 0, " ", "", " ",1);
         Globals.merchantList.add(mr);
-        JuristicMerchant cd= new JuristicMerchant("", "", "", "corre", 0, 0, "3", "", "3");
+        Globals.user.add(mr);
+        JuristicMerchant cd= new JuristicMerchant("", "", "", "Karla", "0", 0, "3", "", "3",2);
         Globals.juristicMerchantList.add(cd); 
-        Client cl =  new Client("", 0, 0, "1", "", "1");
+        Globals.user.add(cd);
+        Client cl =  new Client("", "0", 0, "1", "", "1",0);
         Globals.clientList.add(cl);
+        Globals.user.add(cl);
     }   
 }

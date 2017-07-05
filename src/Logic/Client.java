@@ -14,10 +14,9 @@ import java.util.List;
  ** @date 2017-06-15
  **/
 public class Client extends User{
-    public Client(String name, int ID, int age, String email, String country, String password) 
-    {
-        super(name, ID, age, email, country, password);
-    }
+    public Client(String name, String ID, int age, String email, String country, String password, int type) {
+        super(name, ID, age, email, country, password, type);
+    }   
     @Override
     public List<Product> getTransactions() 
     {
