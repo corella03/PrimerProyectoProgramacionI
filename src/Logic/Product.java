@@ -16,13 +16,15 @@ public class Product {
     private int price;
     private int amount;
     private String productStatus;
-    public Product(String code, String name, int price, int amount, String productStatus) 
+    private String seller;
+    public Product(String code, String name, int price, int amount, String productStatus, String seller) 
     {
         this.code = code;
         this.name = name;
         this.price = price;
         this.amount = amount;
         this.productStatus = productStatus;
+        this.seller = seller;
     }
     public String getCode() 
     {
@@ -44,6 +46,10 @@ public class Product {
     {
         return productStatus;
     } 
+    public String getSeller() 
+    {
+        return seller;
+    }
     public void setCode(String code) 
     {
         this.code = code;
@@ -63,5 +69,9 @@ public class Product {
     public void setProductStatus(String productStatus)
     {
         this.productStatus = productStatus;
-    }   
+    }  
+    public void setSeller(String seller) 
+    {
+        this.seller = seller;
+    }
 }

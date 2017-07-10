@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package Logic;
-
+import java.util.ArrayList;
 import java.util.List;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -18,9 +17,26 @@ public class Client extends User{
         super(name, ID, age, email, country, password, type);
     }   
     @Override
-    public List<Product> getTransactions() 
+    public List<Transaction> getTransactions() 
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Transaction> transactionList = new ArrayList<>();
+        for (int i = 0; i < producList.size(); i++) 
+        {
+            Product product = producList.get(i);
+            Transaction newTransaction = new Transaction(product.getAmount(), product.getName(), product.getPrice(), 
+                    product.getAmount()*product.getPrice());
+            transactionList.add(newTransaction);
+        }
+        return transactionList;
+    }
+    @Override
+    public List<Integer> getCashFlow() 
+    {
+        List<Integer> flowCash = new ArrayList<>();
+        for (int i = 0; i < flowCash.size(); i++) {
+            
+        }
+        return flowCash;
     }
     @Override
     public int calculateRating() 
@@ -30,10 +46,5 @@ public class Client extends User{
             rating += this.reviewList.get(i).getRating();
         }
         return rating / this.reviewList.size();
-    }
-    @Override
-    public List<Integer> getCashFlow() 
-    {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    }  
 }

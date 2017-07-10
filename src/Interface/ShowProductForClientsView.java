@@ -5,10 +5,9 @@
  */
 package Interface;
 import Logic.Globals;
-import Logic.Merchant;
+import Logic.User;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  **
@@ -91,24 +90,24 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
                 new String[]{
                     "Seller","Name", "Code", "Price", "Amount", "Status"
                 }
-        ));
-          
+        )); 
     }
      public void sendToShoppingCar()
      {
-        for (int i = 0; i <  Globals.user.size(); i++)     
-        {
+        User user = Globals.user.get(Globals.userPosition);
+        for (int i = 0; i < Globals.user.size(); i++) 
+        { 
             if(Globals.user.get(i).getType() == 1 || Globals.user.get(i).getType() == 2)
             {
                 for (int j = 0; j < Globals.user.get(i).producList.size(); j++) {
                     if (code.equals(Globals.user.get(i).producList.get(j).getCode())) 
                     {
-                        Globals.user.get(i).shoppingCar.add(Globals.user.get(i).producList.get(j));
-                        Size.setText(String.valueOf(Globals.user.get(Globals.userPosition).shoppingCar.size())); 
+                        user.shoppingCar.add(Globals.user.get(i).producList.get(j));
+                        Size.setText(String.valueOf(user.shoppingCar.size())); 
                     }
                 }
             }
-        }    
+        }
      }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -20,6 +20,7 @@ public class Globals {
     public static int typeUser;
     public static int userPosition;
     public static int optionsMerchant;
+    public static int returnOptions;
     public static int getTypeUser()
     {
         return typeUser;
@@ -28,9 +29,14 @@ public class Globals {
     {
         return userPosition;
     }
-    public static int getOptionsMerchant() {
+    public static int getOptionsMerchant() 
+    {
         
         return optionsMerchant;
+    }
+    public static int getReturnOptions()
+    {
+        return returnOptions;
     }
     public static void setTypeUser(int typeUser) 
     {
@@ -43,5 +49,9 @@ public class Globals {
     public static void setOptionsMerchant(int optionsMerchant) 
     {
         Globals.optionsMerchant = optionsMerchant;
+    }
+    public static void setReturnOptions(int returnOptions) 
+    {
+        Globals.returnOptions = returnOptions;
     }
 }

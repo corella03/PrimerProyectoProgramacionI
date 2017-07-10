@@ -43,7 +43,7 @@ public final class ShowProductsView extends javax.swing.JFrame {
                 int i = showProductTable.getSelectedRow();
                 name = (showProductTable.getValueAt(i, 0).toString());
                 code = (showProductTable.getValueAt(i, 1).toString());
-                price= (showProductTable.getValueAt(i, 2).toString());
+                price = (showProductTable.getValueAt(i, 2).toString());
                 amount = (showProductTable.getValueAt(i, 3).toString());
                 status = (showProductTable.getValueAt(i, 4).toString());
             }
@@ -55,11 +55,20 @@ public final class ShowProductsView extends javax.swing.JFrame {
         setTable();
         String tableArray[][] = new String[seller.producList.size()][5];
         for (int i = 0; i < seller.producList.size(); i++) {
-            tableArray[i][0] = seller.producList.get(i).getName();
-            tableArray[i][1] = seller.producList.get(i).getCode();
-            tableArray[i][2] = String.valueOf(seller.producList.get(i).getPrice());
-            tableArray[i][3] = String.valueOf(seller.producList.get(i).getAmount());
-            tableArray[i][4] = seller.producList.get(i).getProductStatus();
+            if(seller.producList.get(i).getAmount() == 0)
+            {
+                if(code.equals(seller.producList.get(i).getCode()))
+                {
+                    seller.producList.remove(seller.producList.get(i));
+                }
+            }else
+            {
+                tableArray[i][0] = seller.producList.get(i).getName();
+                tableArray[i][1] = seller.producList.get(i).getCode();
+                tableArray[i][2] = String.valueOf(seller.producList.get(i).getPrice());
+                tableArray[i][3] = String.valueOf(seller.producList.get(i).getAmount());
+                tableArray[i][4] = seller.producList.get(i).getProductStatus();
+            }
         }
         showProductTable.setModel(new javax.swing.table.DefaultTableModel(
                 tableArray,

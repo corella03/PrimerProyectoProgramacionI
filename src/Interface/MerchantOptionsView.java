@@ -209,7 +209,7 @@ public class MerchantOptionsView extends javax.swing.JFrame {
     }//GEN-LAST:event_modifyProductButtonActionPerformed
 
     private void deleteProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProductButtonActionPerformed
-    Globals.optionsMerchant = 4;
+        Globals.optionsMerchant = 4;
         showProductsView();
         this.setVisible(false);
     }//GEN-LAST:event_deleteProductButtonActionPerformed

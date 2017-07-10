@@ -16,7 +16,7 @@ public class Merchant extends User{
         super(name, ID, age, email, country, password, type);
     }  
     @Override
-    public List<Product> getTransactions() 
+    public List<Transaction> getTransactions() 
     {
         throw new UnsupportedOperationException("Not supported yet."); 
     }

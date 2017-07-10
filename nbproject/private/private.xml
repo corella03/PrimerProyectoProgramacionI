@@ -4,9 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ShoppingCarView.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ClientOptionView.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ShowProductForClientsView.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/ClientProducts.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Product.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/JuristicMerchant.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/x.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Interface/QualifyView.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Transaction.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Merchant.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Client.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/User.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/Burned.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/PrimerProyectoProgramacionI/src/Logic/IHistory.java</file>
         </group>
     </open-files>

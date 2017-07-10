@@ -12,7 +12,7 @@ import java.util.List;
  ** @date 2017-06-29
  **/
 public interface IHistory {
-    public List<Product> getTransactions();// todas las compras o  ventas que han hecho 
+    public List<Transaction> getTransactions();// todas las compras o  ventas que han hecho 
     //En cliente el producto, cantidad, precio total ,precio unitario no es lista pero devuleve una 
     public int calculateRating();   
     public List<Integer> getCashFlow();// devuelve una lista con e todo la plata que uno gasta o gana

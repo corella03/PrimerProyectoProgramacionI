@@ -5,10 +5,7 @@
  */
 package MainPackage;
 import Interface.LoginView;
-import Logic.Globals;
-import Logic.JuristicMerchant;
-import Logic.Merchant;
-import Logic.Client;
+import Logic.Burned;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -22,14 +19,7 @@ public class Main {
     public static void main(String[] args) {
         LoginView login = new LoginView();
         login.setVisible(true);
-        Merchant mr =  new Merchant("Alonso", "0", 0, " ", "", " ",1);
-        Globals.merchantList.add(mr);
-        Globals.user.add(mr);
-        JuristicMerchant cd= new JuristicMerchant("", "", "", "Karla", "0", 0, "3", "", "3",2);
-        Globals.juristicMerchantList.add(cd); 
-        Globals.user.add(cd);
-        Client cl =  new Client("", "0", 0, "1", "", "1",0);
-        Globals.clientList.add(cl);
-        Globals.user.add(cl);
+        
+       Burned.burnedUsersAndProducts();
     }   
 }

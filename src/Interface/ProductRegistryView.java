@@ -31,6 +31,7 @@ public class ProductRegistryView extends javax.swing.JFrame {
     public void createProduct()
     {
         String name = nameTextField.getText();
+        String nameSeller = Globals.user.get(Globals.userPosition).getName();
         String code = codeTextField.getText();
         String price = priceTextField.getText();
         String amount = (String) amountSpinner.getNextValue().toString();
@@ -39,7 +40,7 @@ public class ProductRegistryView extends javax.swing.JFrame {
         {
             if(RegistryUserView.checkNumber(price) == true)
             {
-                Product newProduct = new Product(code, name, Integer.parseInt(price), Integer.parseInt(amount)-1, productStatus);
+                Product newProduct = new Product(code, name, Integer.parseInt(price), Integer.parseInt(amount)-1, productStatus,nameSeller);
                 if(Globals.typeUser == 1)
                 {
                     Globals.merchantList.get(Globals.userPosition).producList.add(newProduct);
