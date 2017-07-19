@@ -57,6 +57,7 @@ public class MerchantOptionsView extends javax.swing.JFrame {
         productListButton.setForeground(new java.awt.Color(255, 255, 255));
         productListButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/ShowProduct.png"))); // NOI18N
         productListButton.setText("List Products");
+        productListButton.setFocusable(false);
         productListButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         productListButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         productListButton.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +70,7 @@ public class MerchantOptionsView extends javax.swing.JFrame {
         addProductButton.setForeground(new java.awt.Color(255, 255, 255));
         addProductButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/AddProduct.png"))); // NOI18N
         addProductButton.setText("Add Product");
+        addProductButton.setFocusable(false);
         addProductButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         addProductButton.setIconTextGap(1);
         addProductButton.setName(""); // NOI18N
@@ -83,6 +85,7 @@ public class MerchantOptionsView extends javax.swing.JFrame {
         deleteProductButton.setForeground(new java.awt.Color(255, 255, 255));
         deleteProductButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/DeleteProduct.png"))); // NOI18N
         deleteProductButton.setText("Delete Product");
+        deleteProductButton.setFocusable(false);
         deleteProductButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         deleteProductButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         deleteProductButton.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +98,7 @@ public class MerchantOptionsView extends javax.swing.JFrame {
         modifyProductButton.setForeground(new java.awt.Color(255, 255, 255));
         modifyProductButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/ModifyProduct.png"))); // NOI18N
         modifyProductButton.setText("Modify Product");
+        modifyProductButton.setFocusable(false);
         modifyProductButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         modifyProductButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         modifyProductButton.addActionListener(new java.awt.event.ActionListener() {
@@ -164,9 +168,8 @@ public class MerchantOptionsView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(productListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
-                        .addComponent(deleteProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(deleteProductButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -174,6 +177,7 @@ public class MerchantOptionsView extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Exit.png"))); // NOI18N
         jMenu1.setText("Log Out");
+        jMenu1.setFocusable(false);
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);

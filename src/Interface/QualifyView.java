@@ -83,6 +83,7 @@ public class QualifyView extends javax.swing.JFrame {
         qualifyButton.setBackground(new java.awt.Color(0, 153, 153));
         qualifyButton.setForeground(new java.awt.Color(255, 255, 255));
         qualifyButton.setText("Quality");
+        qualifyButton.setFocusable(false);
         qualifyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 qualifyButtonActionPerformed(evt);

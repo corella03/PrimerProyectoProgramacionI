@@ -13,33 +13,28 @@ package Logic;
 public class Burned {
     public static void burnedUsersAndProducts()
     {
-        //merchant
-        Merchant mr =  new Merchant("Alonso", "0", 0, " ", "", " ",1);
-        Globals.merchantList.add(mr);
-        Globals.user.add(mr);
-        Product p1 = new Product("C12", "Cajas", 2, 200, "New","Alonso");
-        Globals.merchantList.get(0).producList.add(p1);
-        Product p2 = new Product("Av13", "Asiento", 50, 30, "Used","Alonso");
-        Globals.merchantList.get(0).producList.add(p2);
-        Product p3 = new Product("B89", "Botas", 30, 1, "New","Alonso");
-        Globals.merchantList.get(0).producList.add(p3);
-        //juristic
-        JuristicMerchant cd= new JuristicMerchant("", "", "", "Karla", "0", 0, "3", "", "3",2);
-        Globals.juristicMerchantList.add(cd); 
-        Globals.user.add(cd);
-        Product p4 = new Product("J12", "Jacket", 40, 2, "New","Karla");
-        Globals.juristicMerchantList.get(0).producList.add(p4);
-        Product p5 = new Product("T14", "Tacos", 69, 1, "New", "Karla");
-        Globals.juristicMerchantList.get(0).producList.add(p5);
-         Product p6 = new Product("R76", "Raton", 4, 1, "New", "Karla");
-         Globals.juristicMerchantList.get(0).producList.add(p6);
+        //Merchant
+        Merchant mr =  new Merchant("Alonso", "0", 0, " ", "", " ", 1);
+        Globals.userList.add(mr);
+        Product p1 = new Product("C12", "Cajas", 2, 200, "New", "0");
+        Globals.productList.add(p1);
+        Product p2 = new Product("Av13", "Asiento", 50, 30, "Used", "0");
+        Globals.productList.add(p2);
+        Product p3 = new Product("B89", "Botas", 30, 6, "New", "0");
+        Globals.productList.add(p3);
+        //Juristic
+        JuristicMerchant cd = new JuristicMerchant("", "", "", "Karla", "1", 0, "3", "", "3", 2);
+        Globals.userList.add(cd);
+        Product p4 = new Product("J12", "Jacket", 40, 2, "New", "1");
+        Globals.productList.add(p4);
+        Product p5 = new Product("T14", "Tacos", 69, 8, "New", "1");
+        Globals.productList.add(p5);
+        Product p6 = new Product("R76", "Raton", 4, 10, "New", "1");
+        Globals.productList.add(p6);
         //Client
         Client cl =  new Client("", "0", 0, "1", "", "1",0);
-        Globals.clientList.add(cl);
-        Globals.user.add(cl);
+        Globals.userList.add(cl);
         Client cl1 =  new Client("", "0", 0, "4", "", "4",0);
-        Globals.clientList.add(cl1);
-        Globals.user.add(cl1);
-        
+        Globals.userList.add(cl1);
     }   
 }

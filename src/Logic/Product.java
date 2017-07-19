@@ -4,74 +4,91 @@
  * and open the template in the editor.
  */
 package Logic;
+
+import java.util.ArrayList;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Karla Vanessa Ballestero Castro
  ** @date 2017-06-21
- **/
+ *
+ */
 public class Product {
+
     private String code;
     private String name;
     private int price;
-    private int amount;
+    private int amountAvailable;
     private String productStatus;
-    private String seller;
-    public Product(String code, String name, int price, int amount, String productStatus, String seller) 
-    {
+    private String sellerID;
+
+    public Product(String code, String name, int price, int amount, String productStatus, String sellerID) {
         this.code = code;
         this.name = name;
         this.price = price;
-        this.amount = amount;
+        this.amountAvailable = amount;
         this.productStatus = productStatus;
-        this.seller = seller;
+        this.sellerID = sellerID;
     }
-    public String getCode() 
-    {
+        
+    public String sellerNameByID(String sellerID){
+        String sellerName = "";
+        for (User user : Globals.userList) {
+            if (user.getID().equals(sellerID) && user.getType() != 0) {
+                sellerName = user.getName();
+                return sellerName;
+            }
+        }
+        return sellerName;
+    }
+
+    public String getCode() {
         return code;
     }
-    public String getName() 
-    {
+
+    public String getName() {
         return name;
     }
-    public int getPrice() 
-    {
+
+    public int getPrice() {
         return price;
     }
-    public int getAmount() 
-    {
-        return amount;
+
+    public int getAmountAvailable() {
+        return amountAvailable;
     }
-    public String getProductStatus()
-    {
+
+    public String getProductStatus() {
         return productStatus;
-    } 
-    public String getSeller() 
-    {
-        return seller;
     }
-    public void setCode(String code) 
-    {
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setCode(String code) {
         this.code = code;
     }
-    public void setName(String name) 
-    {
+
+    public void setName(String name) {
         this.name = name;
     }
-    public void setPrice(int price)
-    {
+
+    public void setPrice(int price) {
         this.price = price;
     }
-    public void setAmount(int amount)
-    {
-        this.amount = amount;
+
+    public void setAmountAvailable(int amountAvailable) {
+        this.amountAvailable = amountAvailable;
     }
-    public void setProductStatus(String productStatus)
-    {
+
+    public void setProductStatus(String productStatus) {
         this.productStatus = productStatus;
-    }  
-    public void setSeller(String seller) 
-    {
-        this.seller = seller;
     }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
 }

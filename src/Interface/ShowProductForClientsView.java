@@ -5,17 +5,22 @@
  */
 package Interface;
 import Logic.Globals;
+import Logic.Product;
+import Logic.ShoppingCar;
 import Logic.User;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Karla Vanessa Ballestero Castro
  ** @date 2017-07-02
- **/
+ *
+ */
 public class ShowProductForClientsView extends javax.swing.JFrame {
+
     /**
      * Creates new form Shi
      */
@@ -25,90 +30,70 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
     public String amount = "";
     public String status = "";
     public String sellers = "";
+
     public ShowProductForClientsView() {
         initComponents();
         setLocationRelativeTo(null);
         getTable();
     }
-    public void setTable()
-    {
-        showProductsForClientsTable.addMouseListener(new MouseAdapter() 
-        {
+
+    public void setTable() {
+        showProductsForClientsTable.addMouseListener(new MouseAdapter() {
             DefaultTableModel model = new DefaultTableModel();
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 int i = showProductsForClientsTable.getSelectedRow();
                 sellers = (showProductsForClientsTable.getValueAt(i, 0).toString());
                 name = (showProductsForClientsTable.getValueAt(i, 1).toString());
                 code = (showProductsForClientsTable.getValueAt(i, 2).toString());
-                price= (showProductsForClientsTable.getValueAt(i, 3).toString());
+                price = (showProductsForClientsTable.getValueAt(i, 3).toString());
                 amount = (showProductsForClientsTable.getValueAt(i, 4).toString());
                 status = (showProductsForClientsTable.getValueAt(i, 5).toString());
             }
         });
     }
-    public static void shoppingCarWindows()
-    {
+
+    public static void shoppingCarWindows() {
         ShoppingCarView shoppingView = new ShoppingCarView();
         shoppingView.setVisible(true);
-        
+
     }
-    public int tableAllProductsSize()
-    {
-        int size = 0;
-        for (int i = 0; i < Globals.user.size(); i++) {
-            if(Globals.user.get(i).getType() == 1 || Globals.user.get(i).getType() == 2)
-            {
-                size += Globals.user.get(i).producList.size();
-            }
-        }
-        return size;
-    }
-     public void getTable() 
-    {
+
+    public void getTable() {
         setTable();
-        int counter = 0;
-        String tableArray[][] = new String[tableAllProductsSize()][6];
-        for (int i = 0; i < Globals.user.size(); i++) 
-        { 
-            if(Globals.user.get(i).getType() == 1 || Globals.user.get(i).getType() == 2)
-            {
-                for (int j = 0; j < Globals.user.get(i).producList.size(); j++)
-                {
-                    tableArray[counter][0] = Globals.user.get(i).getName();
-                    tableArray[counter][1] = Globals.user.get(i).producList.get(j).getName();
-                    tableArray[counter][2] = Globals.user.get(i).producList.get(j).getCode();
-                    tableArray[counter][3] = "$" + String.valueOf(Globals.user.get(i).producList.get(j).getPrice()+" c/u");
-                    tableArray[counter][4] = String.valueOf(Globals.user.get(i).producList.get(j).getAmount());
-                    tableArray[counter][5] = Globals.user.get(i).producList.get(j).getProductStatus();
-                    counter++;
-                }
-            }
+        Product product;
+        int listSize = Globals.productList.size();
+        String tableArray[][] = new String[listSize][6];
+        for (int i = 0; i < listSize; i++) {
+            product = Globals.productList.get(i);
+            tableArray[i][0] = product.sellerNameByID(product.getSellerID());
+            tableArray[i][1] = product.getName();
+            tableArray[i][2] = product.getCode();
+            tableArray[i][3] = "$" + String.valueOf(product.getPrice() + " c/u");
+            tableArray[i][4] = String.valueOf(product.getAmountAvailable());
+            tableArray[i][5] = product.getProductStatus();
+            
         }
         showProductsForClientsTable.setModel(new javax.swing.table.DefaultTableModel(
                 tableArray,
                 new String[]{
-                    "Seller","Name", "Code", "Price", "Amount", "Status"
+                    "Seller", "Name", "Code", "Price", "Amount", "Status"
                 }
-        )); 
+        ));
     }
-     public void sendToShoppingCar()
-     {
-        User user = Globals.user.get(Globals.userPosition);
-        for (int i = 0; i < Globals.user.size(); i++) 
-        { 
-            if(Globals.user.get(i).getType() == 1 || Globals.user.get(i).getType() == 2)
-            {
-                for (int j = 0; j < Globals.user.get(i).producList.size(); j++) {
-                    if (code.equals(Globals.user.get(i).producList.get(j).getCode())) 
-                    {
-                        user.shoppingCar.add(Globals.user.get(i).producList.get(j));
-                        Size.setText(String.valueOf(user.shoppingCar.size())); 
-                    }
-                }
+
+    public void sendToShoppingCar(int quantity) {
+        User user = Globals.loggedUser;
+        for (Product product : Globals.productList) {
+            if (product.getCode().equals(code)) {
+                ShoppingCar sc = new ShoppingCar(product, quantity);
+                user.shoppingCar.add(sc);
+                Size.setText(String.valueOf(user.shoppingCar.size()));
             }
         }
-     }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,6 +143,7 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
         shoppingCarButton.setForeground(new java.awt.Color(255, 255, 255));
         shoppingCarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/addToShoppingCar.png"))); // NOI18N
         shoppingCarButton.setText("Add To Shopping Car");
+        shoppingCarButton.setFocusable(false);
         shoppingCarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         shoppingCarButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         shoppingCarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +156,7 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
         listCarButton.setForeground(new java.awt.Color(255, 255, 255));
         listCarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/showToShoppingCarList.png"))); // NOI18N
         listCarButton.setText("Show Shopping Car");
+        listCarButton.setFocusable(false);
         listCarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         listCarButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         listCarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -257,7 +244,11 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
     }//GEN-LAST:event_listCarButtonActionPerformed
 
     private void shoppingCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoppingCarButtonActionPerformed
-        sendToShoppingCar();
+        String quantity = JOptionPane.showInputDialog("Quantity?");
+        if (!quantity.isEmpty() || !quantity.equals("0")){
+            sendToShoppingCar(Integer.parseInt(quantity));
+        }
+
     }//GEN-LAST:event_shoppingCarButtonActionPerformed
     /**
      * @param args the command line arguments

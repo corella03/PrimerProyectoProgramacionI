@@ -162,6 +162,7 @@
                   <Image iconType="3" name="/Icons/mis-documentos-icono-5180-64.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Product History"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[61, 31]"/>
@@ -194,6 +195,7 @@
                   <Image iconType="3" name="/Icons/cesta-de-la-compra-de-la-tienda-icono-8752-64.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Products"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[61, 31]"/>
@@ -219,6 +221,7 @@
                   <Image iconType="3" name="/Icons/tarjeta-de-credito-visa-icono-8242-64 (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cash"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[61, 31]"/>
@@ -244,6 +247,7 @@
                   <Image iconType="3" name="/Icons/compra-icono-6848-64.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Shopping"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[61, 31]"/>

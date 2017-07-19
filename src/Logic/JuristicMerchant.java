@@ -4,44 +4,48 @@
  * and open the template in the editor.
  */
 package Logic;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Karla Vanessa Ballestero Castro
  ** @date 2017-06-16
- **/
-public class JuristicMerchant extends Merchant{ 
+ *
+ */
+public class JuristicMerchant extends Merchant {
+
     private String numberOfRegistration;
     private String businessName;
     private String businessReason;
+
     public JuristicMerchant(String numberOfRegistration, String businessName, String businessReason, String name, String ID, int age, String email, String country, String password, int type) {
         super(name, ID, age, email, country, password, type);
         this.numberOfRegistration = numberOfRegistration;
         this.businessName = businessName;
         this.businessReason = businessReason;
-    }  
-    public String getNumberOfRegistration() 
-    {
+    }
+
+    public String getNumberOfRegistration() {
         return numberOfRegistration;
     }
-    public String getBusinessName() 
-    {
+
+    public String getBusinessName() {
         return businessName;
     }
-    public String getBusinessReason() 
-    {
+
+    public String getBusinessReason() {
         return businessReason;
     }
-    public void setNumberOfRegistration(String numberOfRegistration) 
-    {
+
+    public void setNumberOfRegistration(String numberOfRegistration) {
         this.numberOfRegistration = numberOfRegistration;
     }
-    public void setBusinessName(String businessName) 
-    {
+
+    public void setBusinessName(String businessName) {
         this.businessName = businessName;
     }
-    public void setBusinessReason(String businessReason) 
-    {
+
+    public void setBusinessReason(String businessReason) {
         this.businessReason = businessReason;
-    } 
+    }
 }

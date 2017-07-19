@@ -18,6 +18,7 @@
               <Image iconType="3" name="/Icons/Exit.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Log Out"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu1MouseClicked"/>
@@ -152,6 +153,7 @@
               <Image iconType="3" name="/Icons/ShowProduct.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="List Products"/>
+            <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
@@ -171,6 +173,7 @@
               <Image iconType="3" name="/Icons/AddProduct.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Add Product"/>
+            <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="iconTextGap" type="int" value="1"/>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
@@ -192,6 +195,7 @@
               <Image iconType="3" name="/Icons/DeleteProduct.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Delete Product"/>
+            <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
@@ -211,6 +215,7 @@
               <Image iconType="3" name="/Icons/ModifyProduct.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Modify Product"/>
+            <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>

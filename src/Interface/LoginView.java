@@ -4,19 +4,23 @@
  * and open the template in the editor.
  */
 package Interface;
+
 import Logic.Client;
 import Logic.Globals;
 import Logic.JuristicMerchant;
 import Logic.Merchant;
 import Logic.User;
 import javax.swing.JOptionPane;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Karla Vanessa Ballestero Castro
  ** @date 2017-06-15
- **/
+ *
+ */
 public class LoginView extends javax.swing.JFrame {
+
     /**
      * Creates new form lol
      */
@@ -24,78 +28,61 @@ public class LoginView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    public void viewRegistryUser()
-    {
+
+    public void viewRegistryUser() {
         RegistryUserView registryView = new RegistryUserView();
         registryView.setVisible(true);
     }
-    public static void MerchantOptionsWindows()
-    {
+
+    public static void MerchantOptionsWindows() {
         MerchantOptionsView merchantOptions = new MerchantOptionsView();
         merchantOptions.setVisible(true);
-    }        
-     public static void ClientOptionsWindows()
-    {
+    }
+
+    public static void ClientOptionsWindows() {
         ClientOptionView clientOptions = new ClientOptionView();
         clientOptions.setVisible(true);
     }
-    public boolean CheckSpace(String email, String password)
-    {
+
+    public boolean CheckSpace(String email, String password) {
         return !email.isEmpty() && !password.isEmpty();
     }
-    public void CleanSpaces()
-    {
+
+    public void CleanSpaces() {
         emailTextField.setText("");
         passwordTextField.setText("");
     }
-    public boolean changeThePageIfLogin(User user, String email, String password,int type, int i){
-        if(user.login(email,password))
-        {
-            Globals.userPosition = i;
-            Globals.typeUser = type;
+
+    public boolean changeThePageIfLogin(User user, String email, String password) {
+        if (user.login(email, password)) {
+            Globals.loggedUser = user;
             this.setVisible(false);
             return true;
         }
         return false;
     }
-    
-    public void checkData()
-    {
+
+    public void checkData() {
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
-        if(CheckSpace(email, password))
-        {
-            for (int i = 0; i < Globals.clientList.size(); i++) 
-            {
-                Client client = Globals.clientList.get(i);
-                if (changeThePageIfLogin(client, email, password,0, i)){
-                    ClientOptionsWindows();
-                    return;
-                }
-            }
-            for (int j = 0; j < Globals.merchantList.size(); j++) 
-            {
-                Merchant merchant = Globals.merchantList.get(j);
-                if (changeThePageIfLogin(merchant, email, password,1, j)){
-                    MerchantOptionsWindows();
-                    return;
-                }
-            }
-            for(int m = 0; m <Globals.juristicMerchantList.size(); m++)
-            {
-                JuristicMerchant juristicMerchant = Globals.juristicMerchantList.get(m);
-                if (changeThePageIfLogin(juristicMerchant, email, password,2, m)){
+        if (CheckSpace(email, password)) {
+            for (User user : Globals.userList) {
+                if (changeThePageIfLogin(user, email, password)) {
+                    if (user.getType() == 0) {
+                        ClientOptionsWindows();
+                        return;
+                    }
                     MerchantOptionsWindows();
                     return;
                 }
             }
             JOptionPane.showMessageDialog(null, "You entered some invalid data, try again");
             CleanSpaces();
-        }else
-        {
+        } else {
             JOptionPane.showMessageDialog(this, "You must fill all the spaces.");
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,6 +121,7 @@ public class LoginView extends javax.swing.JFrame {
         logInButton.setBackground(new java.awt.Color(0, 153, 153));
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
         logInButton.setText("Log in");
+        logInButton.setFocusable(false);
         logInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logInButtonActionPerformed(evt);
@@ -187,6 +175,7 @@ public class LoginView extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/RegistryUser.png"))); // NOI18N
         jMenu1.setText("Sign in");
+        jMenu1.setFocusable(false);
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);

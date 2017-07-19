@@ -24,8 +24,8 @@ public class GetCashFlowView extends javax.swing.JFrame {
     }
     public void imprimir()
     {
-        Globals.user.get(Globals.userPosition).getCashFlow();
-        System.out.println(Globals.clientList.get(Globals.userPosition).getCashFlow().size());
+        int x = 0;
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,9 +57,11 @@ public class GetCashFlowView extends javax.swing.JFrame {
 
         jMenuBar2.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar2.setBorder(null);
+        jMenuBar2.setOpaque(false);
 
         back.setBackground(new java.awt.Color(255, 255, 255));
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/return.png"))); // NOI18N
+        back.setFocusable(false);
         back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backMouseClicked(evt);

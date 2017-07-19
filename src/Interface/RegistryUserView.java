@@ -10,6 +10,7 @@ import Logic.JuristicMerchant;
 import Logic.Merchant;
 import Logic.User;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -28,7 +29,7 @@ public class RegistryUserView extends javax.swing.JFrame {
     public static void returnLoginView()
     {
         LoginView login = new LoginView();
-        login.setVisible(true);    
+        login.setVisible(true);
     }
     public boolean checkSixSpace(String name, String email, String password, String ID,
                               String age, String country)
@@ -55,7 +56,7 @@ public class RegistryUserView extends javax.swing.JFrame {
     public boolean checkUserExistence(String ID, String email)
     {
         boolean userExist = false;
-        for (User object : Globals.user) 
+        for (User object : Globals.userList) 
         {
             if(object.getID() == ID || object.getEmail().equals(email))
             {
@@ -115,42 +116,36 @@ public class RegistryUserView extends javax.swing.JFrame {
         String numberRegistration = numberRegistrationTextField.getText();
         String businessName = businessNameTextField.getText();
         String businessReason = businessReasonTextField.getText();
-        Globals.typeUser = typeMerchantComboBox.getSelectedIndex();
+        int typeUser = typeMerchantComboBox.getSelectedIndex();
         if(checkSixSpace(name, email, password, ID, age, country))
         {
             if(checkNumber(age) == true)
             {
                 if(checkUserExistence(ID, email) != true )
                 {
-                    switch (Globals.typeUser) 
+                    switch (typeUser) 
                     {
                         case 0:
-                            Client newClient = new Client(name, ID, Integer.parseInt(age), email, country, password, Globals.typeUser);
-                            Globals.clientList.add(newClient);
-                            Globals.user.add(newClient);
+                            Client newClient = new Client(name, ID, Integer.parseInt(age), email, country, password, typeUser);
+                            Globals.userList.add(newClient);
                             break;
                         case 1:
                             Merchant newMerchant = new Merchant(name, ID, Integer.parseInt(age), email, country, 
-                                    password, Globals.typeUser);
-                            Globals.merchantList.add(newMerchant);
-                            Globals.user.add(newMerchant);
+                                    password, typeUser);
+                            Globals.userList.add(newMerchant);
                             break;
                         case 2:
                             if (checkThreeSpace(numberRegistration, businessName, businessReason))
                             {
                                 JuristicMerchant newJuristicMerchant = new JuristicMerchant(numberRegistration, 
                                         businessName, businessReason, name, ID,Integer.parseInt(age), email, 
-                                        country, password, Globals.typeUser);
-                                Globals.juristicMerchantList.add(newJuristicMerchant);
-                                Globals.user.add(newJuristicMerchant);
+                                        country, password, typeUser);
+                                Globals.userList.add(newJuristicMerchant);
                             }   break;
                         default:
                             break; 
                     }
                 completRegistry();
-                System.out.println("\nCantidad Comerciantes: " + Globals.merchantList.size());
-                System.out.println("Cantidad clientes: " +Globals.clientList.size()); 
-                System.out.println("Cantidad empresas: " +Globals.juristicMerchantList.size());
                 }
             }else
             {
@@ -274,6 +269,7 @@ public class RegistryUserView extends javax.swing.JFrame {
         registryUserButton.setForeground(new java.awt.Color(255, 255, 255));
         registryUserButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/AddUser.png"))); // NOI18N
         registryUserButton.setBorder(null);
+        registryUserButton.setFocusable(false);
         registryUserButton.setOpaque(false);
         registryUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,7 +420,6 @@ public class RegistryUserView extends javax.swing.JFrame {
 
     private void registryUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registryUserButtonActionPerformed
         createNewUser();
-        System.out.println(Globals.user.size());
     }//GEN-LAST:event_registryUserButtonActionPerformed
 
     private void typeMerchantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeMerchantComboBoxActionPerformed

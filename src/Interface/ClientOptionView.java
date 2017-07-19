@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package Interface;
-
 import Logic.Globals;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -30,6 +28,11 @@ public class ClientOptionView extends javax.swing.JFrame {
     {
         GetCashFlowView flowCash =  new GetCashFlowView();
         flowCash.setVisible(true);
+    }
+    public void showHistoryProduct()
+    {
+        HistoryProductView histrory = new HistoryProductView();
+        histrory.setVisible(true);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +64,7 @@ public class ClientOptionView extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/mis-documentos-icono-5180-64.png"))); // NOI18N
         jButton1.setText("Product History");
+        jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setMaximumSize(new java.awt.Dimension(61, 31));
         jButton1.setMinimumSize(new java.awt.Dimension(61, 31));
@@ -77,6 +81,7 @@ public class ClientOptionView extends javax.swing.JFrame {
         showProductForClientsButton.setForeground(new java.awt.Color(255, 255, 255));
         showProductForClientsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cesta-de-la-compra-de-la-tienda-icono-8752-64.png"))); // NOI18N
         showProductForClientsButton.setText("Products");
+        showProductForClientsButton.setFocusable(false);
         showProductForClientsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         showProductForClientsButton.setMaximumSize(new java.awt.Dimension(61, 31));
         showProductForClientsButton.setMinimumSize(new java.awt.Dimension(61, 31));
@@ -91,6 +96,7 @@ public class ClientOptionView extends javax.swing.JFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tarjeta-de-credito-visa-icono-8242-64 (1).png"))); // NOI18N
         jButton3.setText("Cash");
+        jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setMaximumSize(new java.awt.Dimension(61, 31));
         jButton3.setMinimumSize(new java.awt.Dimension(61, 31));
@@ -105,6 +111,7 @@ public class ClientOptionView extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/compra-icono-6848-64.png"))); // NOI18N
         jButton4.setText("Shopping");
+        jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setMaximumSize(new java.awt.Dimension(61, 31));
         jButton4.setMinimumSize(new java.awt.Dimension(61, 31));
@@ -212,20 +219,18 @@ public class ClientOptionView extends javax.swing.JFrame {
         showProductsClient();
         this.setVisible(false);
     }//GEN-LAST:event_showProductForClientsButtonActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Globals.returnOptions = 1;
         ShowProductForClientsView.shoppingCarWindows();
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         showGetCashFlowWindows();
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        showHistoryProduct();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments

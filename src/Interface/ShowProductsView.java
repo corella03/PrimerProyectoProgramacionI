@@ -4,40 +4,48 @@
  * and open the template in the editor.
  */
 package Interface;
+
 import Logic.Globals;
 import Logic.Merchant;
+import Logic.Product;
+import Logic.User;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Karla Vanessa Ballestero Castro
  ** @date 2017-06-27
- **/
+ *
+ */
 public final class ShowProductsView extends javax.swing.JFrame {
+
     /**
      * Creates new form ShowProducts
      */
     public String name = "";
     public String code = "";
     public String price = "";
-    public String  amount = "";
+    public String amount = "";
     public String status = "";
     Merchant seller;
+
     public ShowProductsView() {
         initComponents();
         setLocationRelativeTo(null);
         initialView();
         getTable();
     }
-    public void setTable()
-    {
-        showProductTable.addMouseListener(new MouseAdapter() 
-        {
+
+    public void setTable() {
+        showProductTable.addMouseListener(new MouseAdapter() {
             DefaultTableModel model = new DefaultTableModel();
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 int i = showProductTable.getSelectedRow();
@@ -49,36 +57,33 @@ public final class ShowProductsView extends javax.swing.JFrame {
             }
         });
     }
-    public void getTable() 
-    {
-        seller = getCurrentSeller(Globals.typeUser);
+
+    public void getTable() {
         setTable();
-        String tableArray[][] = new String[seller.producList.size()][5];
-        for (int i = 0; i < seller.producList.size(); i++) {
-            if(seller.producList.get(i).getAmount() == 0)
-            {
-                if(code.equals(seller.producList.get(i).getCode()))
-                {
-                    seller.producList.remove(seller.producList.get(i));
-                }
-            }else
-            {
-                tableArray[i][0] = seller.producList.get(i).getName();
-                tableArray[i][1] = seller.producList.get(i).getCode();
-                tableArray[i][2] = String.valueOf(seller.producList.get(i).getPrice());
-                tableArray[i][3] = String.valueOf(seller.producList.get(i).getAmount());
-                tableArray[i][4] = seller.producList.get(i).getProductStatus();
+        Product product;
+        User user = Globals.loggedUser;
+        ArrayList<Product> userProducts = user.productsBySeller(user.getID());
+        int listSize = userProducts.size();
+        if (listSize != 0) {
+            String tableArray[][] = new String[listSize][5];
+            for (int i = 0; i < listSize; i++) {
+                product = userProducts.get(i);
+                tableArray[i][0] = product.getName();
+                tableArray[i][1] = product.getCode();
+                tableArray[i][2] = "$" + String.valueOf(product.getPrice() + " c/u");
+                tableArray[i][3] = String.valueOf(product.getAmountAvailable());
+                tableArray[i][4] = product.getProductStatus();
             }
+            showProductTable.setModel(new javax.swing.table.DefaultTableModel(
+                    tableArray,
+                    new String[]{
+                        "Name", "Code", "Price", "Amount", "Status"
+                    }
+            ));
         }
-        showProductTable.setModel(new javax.swing.table.DefaultTableModel(
-                tableArray,
-                new String[]{
-                    "Name", "Code", "Price", "Amount", "Status"
-                }
-        ));
     }
-    public void showList()
-    {
+
+    public void showList() {
         nameTextField.setVisible(false);
         nameLabel.setVisible(false);
         priceLabel.setVisible(false);
@@ -88,10 +93,10 @@ public final class ShowProductsView extends javax.swing.JFrame {
         amountSpinner.setVisible(false);
         amountLabel.setVisible(false);
         statusComboBox.setVisible(false);
-        statusLabel.setVisible(false);    
+        statusLabel.setVisible(false);
     }
-    public void showModifyProduct()
-    {
+
+    public void showModifyProduct() {
         nameTextField.setVisible(true);
         nameLabel.setVisible(true);
         priceLabel.setVisible(true);
@@ -103,8 +108,8 @@ public final class ShowProductsView extends javax.swing.JFrame {
         statusComboBox.setVisible(true);
         statusLabel.setVisible(true);
     }
-    public void initialView()
-    {
+
+    public void initialView() {
         switch (Globals.optionsMerchant) {
             case 2:
                 showModifyProduct();
@@ -121,81 +126,46 @@ public final class ShowProductsView extends javax.swing.JFrame {
                 break;
         }
     }
-    public void modifyProduct()
-    {
-        seller = getCurrentSeller(Globals.typeUser);
+
+    public void modifyProduct() {
         String newName = nameTextField.getText();
         String newCode = codeTextField.getText();
-        String newPrice =priceTextField.getText();
-        String newAmount = (String)amountSpinner.getValue().toString();
+        int newPrice = priceTextField.getText().isEmpty() ? 0 : Integer.parseInt(priceTextField.getText());
+        int newAmount = (int) amountSpinner.getValue();
         String newStatus = (String) statusComboBox.getSelectedItem();
-        for (int i = 0; i < seller.producList.size(); i++)     
-        {
-            if (code.equals(seller.producList.get(i).getCode())) 
-            {
-                if(!newName.isEmpty())
-                {
-                    //seller.producList.get(i).setName(seller.producList.get(i).getName());
-                    seller.producList.get(i).setName(newName);
-                }
-                if(!newCode.isEmpty())
-                {
-                    seller.producList.get(i).setCode(newCode);
-                }
-                if(!newPrice.isEmpty())
-                {
-                    if(RegistryUserView.checkNumber(newPrice) == true)
-                    {
-                        seller.producList.get(i).setPrice(Integer.parseInt(newPrice));
-                    }else
-                    {
-                        JOptionPane.showMessageDialog(null, "You entered some invalid data, try again");
-                        priceTextField.setText("");
-                    }
-                }
-                if(!newAmount.isEmpty())
-                {
-                    seller.producList.get(i).setAmount(Integer.parseInt(newAmount));
-                }
-                if(!newStatus.isEmpty())
-                {
-                    seller.producList.get(i).setProductStatus(newStatus);
-                }  
+        User user = Globals.loggedUser;
+
+        for (Product product : Globals.productList) {
+            if (product.getCode().equals(code)) {
+                product.setCode(newCode);
+                product.setName(newName);
+                product.setPrice(newPrice);
+                product.setAmountAvailable(newAmount);
+                product.setProductStatus(newStatus);
             }
         }
+
         getTable();
-    }  
-    public Merchant getCurrentSeller(int type) {
-        if(type == 1)
-        {
-            return Globals.merchantList.get(Globals.userPosition);
-        }
-        return Globals.juristicMerchantList.get(Globals.userPosition);
     }
-    
-    public void deleteProduct()
-    {
-        seller = getCurrentSeller(Globals.typeUser);
-        for (int i = 0; i < seller.producList.size(); i++)     
-        {
-            if (code.equals(seller.producList.get(i).getCode())) 
-            {
-                seller.producList.remove(i);
+
+    public void deleteProduct() {
+        for (int i = 0; i < Globals.productList.size() ; i++) {
+            if (Globals.productList.get(i).getCode().equals(code)) {
+                Globals.productList.remove(i);
             }
-        } 
+        }
+
         getTable();
-    } 
-    public void optionButton()
-    {
-        if (Globals.optionsMerchant == 2)
-        {
+    }
+
+    public void optionButton() {
+        if (Globals.optionsMerchant == 2) {
             modifyProduct();
-        }
-        else if (Globals.optionsMerchant == 4)
-        {
-            deleteProduct();    
+        } else if (Globals.optionsMerchant == 4) {
+            deleteProduct();
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -261,6 +231,7 @@ public final class ShowProductsView extends javax.swing.JFrame {
         multiButton.setBackground(new java.awt.Color(0, 153, 153));
         multiButton.setForeground(new java.awt.Color(255, 255, 255));
         multiButton.setText("Modify");
+        multiButton.setFocusable(false);
         multiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 multiButtonActionPerformed(evt);

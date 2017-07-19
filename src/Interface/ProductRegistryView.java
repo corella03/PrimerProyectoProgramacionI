@@ -31,26 +31,17 @@ public class ProductRegistryView extends javax.swing.JFrame {
     public void createProduct()
     {
         String name = nameTextField.getText();
-        String nameSeller = Globals.user.get(Globals.userPosition).getName();
+        String sellerID = Globals.loggedUser.getID();
         String code = codeTextField.getText();
         String price = priceTextField.getText();
         String amount = (String) amountSpinner.getNextValue().toString();
         String productStatus = (String) statusComboBox.getSelectedItem();
-        if(RegistryUserView.checkThreeSpace(name, name, name))
+        if(RegistryUserView.checkThreeSpace(name, code, price))
         {
             if(RegistryUserView.checkNumber(price) == true)
             {
-                Product newProduct = new Product(code, name, Integer.parseInt(price), Integer.parseInt(amount)-1, productStatus,nameSeller);
-                if(Globals.typeUser == 1)
-                {
-                    Globals.merchantList.get(Globals.userPosition).producList.add(newProduct);
-                    cleanSpaces();
-                }
-                else if (Globals.typeUser == 2)
-                {
-                    Globals.juristicMerchantList.get(Globals.userPosition).producList.add(newProduct);
-                    cleanSpaces();
-                }
+                Product newProduct = new Product(code, name, Integer.parseInt(price), Integer.parseInt(amount)-1, productStatus, sellerID);
+                Globals.productList.add(newProduct);
             }else
             {
                 JOptionPane.showMessageDialog(null, "You entered some invalid data, try again");
@@ -120,6 +111,7 @@ public class ProductRegistryView extends javax.swing.JFrame {
         productRegistryButton.setBackground(new java.awt.Color(0, 153, 153));
         productRegistryButton.setForeground(new java.awt.Color(0, 153, 153));
         productRegistryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/AddProduct.png"))); // NOI18N
+        productRegistryButton.setFocusable(false);
         productRegistryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productRegistryButtonActionPerformed(evt);
