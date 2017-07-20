@@ -5,11 +5,9 @@
  */
 package Interface;
 
-import Logic.Client;
 import Logic.Globals;
-import Logic.JuristicMerchant;
-import Logic.Merchant;
 import Logic.User;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,40 +26,40 @@ public class LoginView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    //LOAD VIEW FOR USER REGISTER
     public void viewRegistryUser() {
         RegistryUserView registryView = new RegistryUserView();
         registryView.setVisible(true);
     }
-
+    //LOAD VIEW FOR MERCHANT
     public static void MerchantOptionsWindows() {
         MerchantOptionsView merchantOptions = new MerchantOptionsView();
         merchantOptions.setVisible(true);
     }
-
+    //METHOD TO LOAD CLIENT OPTIONS VIEW
     public static void ClientOptionsWindows() {
         ClientOptionView clientOptions = new ClientOptionView();
         clientOptions.setVisible(true);
     }
-
+    //METHOD FOR CHECK IF EXISTS VALUE IN EMAIL AND PASSWORD
     public boolean CheckSpace(String email, String password) {
         return !email.isEmpty() && !password.isEmpty();
     }
-
+    //METHOD TO CLEAN SPACES
     public void CleanSpaces() {
         emailTextField.setText("");
         passwordTextField.setText("");
     }
-
+    //METHOD TO CHANCE PAGE IF LOGIN IS TRUE
     public boolean changeThePageIfLogin(User user, String email, String password) {
         if (user.login(email, password)) {
-            Globals.loggedUser = user;
+            Globals.loggedUser = user;//SET USER TO GLOBAL VARIABLE
             this.setVisible(false);
             return true;
         }
         return false;
     }
-
+    //METHOD TO CHECK USER
     public void checkData() {
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
@@ -69,14 +67,17 @@ public class LoginView extends javax.swing.JFrame {
             for (User user : Globals.userList) {
                 if (changeThePageIfLogin(user, email, password)) {
                     if (user.getType() == 0) {
+                        //LOAD CLIENT OPTIONS VIEW
                         ClientOptionsWindows();
                         return;
                     }
+                    //LOAD VIEW MERCHANT
                     MerchantOptionsWindows();
                     return;
                 }
             }
             JOptionPane.showMessageDialog(null, "You entered some invalid data, try again");
+            //CLEAR SPACES
             CleanSpaces();
         } else {
             JOptionPane.showMessageDialog(this, "You must fill all the spaces.");
@@ -110,21 +111,39 @@ public class LoginView extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(0, 153, 153));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("E-mail");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Password");
+
+        passwordTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordTextFieldKeyPressed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LoginImage.jpg"))); // NOI18N
 
         logInButton.setBackground(new java.awt.Color(0, 153, 153));
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
         logInButton.setText("Log in");
-        logInButton.setFocusable(false);
         logInButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logInButtonActionPerformed(evt);
+            }
+        });
+        logInButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                logInButtonKeyPressed(evt);
+            }
+        });
+
+        emailTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                emailTextFieldKeyPressed(evt);
             }
         });
 
@@ -137,20 +156,19 @@ public class LoginView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(92, 92, 92)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel5))
-                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(140, 140, 140)
+                        .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -165,12 +183,11 @@ public class LoginView extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(35, 35, 35)
                 .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(null);
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/RegistryUser.png"))); // NOI18N
@@ -203,8 +220,27 @@ public class LoginView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jMenu1MouseClicked
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
-        checkData();
+        //VALIDATE DATAS
+        this.checkData();
     }//GEN-LAST:event_logInButtonActionPerformed
+    //
+    private void emailTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//CHANGE FOCUS IN ENTER KEY
+            this.passwordTextField.requestFocus();
+        }
+    }//GEN-LAST:event_emailTextFieldKeyPressed
+    //
+    private void passwordTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//CHANGE FOCUS IN ENTER KEY
+            this.logInButton.requestFocus();
+        }
+    }//GEN-LAST:event_passwordTextFieldKeyPressed
+    //
+    private void logInButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logInButtonKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//CHANGE FOCUS IN ENTER KEY
+            checkData();
+        }
+    }//GEN-LAST:event_logInButtonKeyPressed
     /**
      * @param args the command line arguments
      */

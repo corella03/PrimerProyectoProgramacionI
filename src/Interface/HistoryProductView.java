@@ -7,13 +7,11 @@ package Interface;
 
 import Logic.Globals;
 import Logic.History;
-import Logic.Product;
 import Logic.PurchaseOrder;
 import Logic.User;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,36 +23,49 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HistoryProductView extends javax.swing.JFrame {
 
-    String productAmount = "";
-    String productName = "";
-    String unitPrice = "";
-    String totalPrice = "";
-    User user = Globals.loggedUser;
-    List<History> histories = Globals.historyList;
+    private String productAmount = "";
+    private String productName = "";
+    private String unitPrice = "";
+    private String totalPrice = "";
+    private User user = Globals.loggedUser;
+    private List<History> histories = Globals.historyList;
 
     /**
      * Creates new form HistoryProductView
      */
     public HistoryProductView() {
         initComponents();
-        setLocationRelativeTo(null);
-        setPurchaseOrders();
-        getTable(getPurchaseID());
+        try {
+            setLocationRelativeTo(null);
+            //Method to establish the purchase order
+            setPurchaseOrders();
+            //VALIDATE IF ID IS > -1
+            int id = getPurchaseID();//Return value <> -1 if rows exists
+            if (id != -1)
+                getTable(id);//Method for get table of products
+        } catch (Exception e) {
+        }
+        
     }
-
-    public void setPurchaseOrders() {
+    //
+    private void setPurchaseOrders() {
+        //History list tour by id
         for (History history : histories) {
             if (history.getUserID().equals(user.getID())) {
                 purchaseOrdersBox.addItem(String.valueOf(history.getPurchaseID()));
             }
         }
     }
-
-    public int getPurchaseID() {
-        return Integer.parseInt(purchaseOrdersBox.getSelectedItem().toString());
+    //
+    private int getPurchaseID() {
+        //IF COMBO HAS ROWS
+        if (purchaseOrdersBox.getItemCount() > 0)
+            return Integer.parseInt(purchaseOrdersBox.getSelectedItem().toString());
+        else
+            return -1;
     }
-
-    public void setTable() {
+    //
+    private void setTable() {
         showHistoryProductTable.addMouseListener(new MouseAdapter() {
             DefaultTableModel model = new DefaultTableModel();
 
@@ -68,8 +79,8 @@ public class HistoryProductView extends javax.swing.JFrame {
             }
         });
     }
-
-    public void getTable(int purchaseID) {
+    //
+    private void getTable(int purchaseID) {
         PurchaseOrder item;
         History history = histories.get(purchaseID);
         int listSize = history.getItems().size();
@@ -90,12 +101,12 @@ public class HistoryProductView extends javax.swing.JFrame {
             ));
         }
     }
-
-    public void QualifyProduct(int purchaseID) {
+    //
+    private void QualifyProduct(int purchaseID) {
         
     }
-
-    public void QualifyWindow() {
+    //
+    private void QualifyWindow() {
         QualifyView qualify = new QualifyView();
         qualify.setVisible(true);
     }

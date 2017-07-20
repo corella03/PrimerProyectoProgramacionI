@@ -21,16 +21,19 @@ public class ClientOptionView extends javax.swing.JFrame {
     }
     public static void showProductsClient()
     {
+        //LOAD PRODUCTS VIEW FOR CLIENTS
         ShowProductForClientsView showProducts =  new ShowProductForClientsView();
         showProducts.setVisible(true);
     }
     public void showGetCashFlowWindows()
     {
+        //GET BILL OF CASH
         GetCashFlowView flowCash =  new GetCashFlowView();
         flowCash.setVisible(true);
     }
     public void showHistoryProduct()
     {
+        //LOAD HISTORY VIEW
         HistoryProductView histrory = new HistoryProductView();
         histrory.setVisible(true);
     }
@@ -75,6 +78,7 @@ public class ClientOptionView extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoImage.jpg"))); // NOI18N
 
         showProductForClientsButton.setBackground(new java.awt.Color(0, 153, 153));
@@ -130,23 +134,20 @@ public class ClientOptionView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
                         .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(showProductForClientsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(showProductForClientsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(47, 47, 47))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +217,8 @@ public class ClientOptionView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1MouseClicked
     private void showProductForClientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductForClientsButtonActionPerformed
         Globals.returnOptions = 2;
-        showProductsClient();
+        //METHOD THAT RETURNS CUSTOMER PRODUCTS
+        this.showProductsClient();
         this.setVisible(false);
     }//GEN-LAST:event_showProductForClientsButtonActionPerformed
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -225,11 +227,13 @@ public class ClientOptionView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        showGetCashFlowWindows();
+        //METHOD THAT RETURNS THE MONEY FLOW
+        this.showGetCashFlowWindows();
         this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        showHistoryProduct();
+        //METHOD LOADING THE PRODUCT HISTORY
+        this.showHistoryProduct();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
     /**

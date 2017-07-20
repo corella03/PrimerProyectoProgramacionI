@@ -11,6 +11,7 @@ package Logic;
  ** @date 2017-07-05
  **/
 public class Burned {
+    //LOADING DETAILED DATA
     public static void burnedUsersAndProducts()
     {
         //Merchant

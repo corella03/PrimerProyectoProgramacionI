@@ -20,9 +20,9 @@ public class GetCashFlowView extends javax.swing.JFrame {
     public GetCashFlowView() {
         initComponents();
         setLocationRelativeTo(null);
-        imprimir();
+        this.printMoney();
     }
-    public void imprimir()
+    public void printMoney()
     {
         int x = 0;
         

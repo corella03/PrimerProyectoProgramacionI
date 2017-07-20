@@ -9,8 +9,8 @@ import Logic.Globals;
 import Logic.JuristicMerchant;
 import Logic.Merchant;
 import Logic.User;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -24,35 +24,41 @@ public class RegistryUserView extends javax.swing.JFrame {
     public RegistryUserView() {
         initComponents();
         setLocationRelativeTo(null);
+        //LOAD VIEW
         initialView();
     }
+    //
     public static void returnLoginView()
     {
         LoginView login = new LoginView();
         login.setVisible(true);
     }
+    //VALIDATE EMPTY COMPONENTES
     public boolean checkSixSpace(String name, String email, String password, String ID,
                               String age, String country)
     {
         return !name.isEmpty() &&  !email.isEmpty() && !password.isEmpty() && ! ID.isEmpty() &&
                 !age.isEmpty() && !country.isEmpty();
     }
+    //
     public static boolean checkThreeSpace(String number, String name, String reason)
     {
         return !number.isEmpty() &&  !name.isEmpty() && !reason.isEmpty();
     }
+    //METHOD FOR CLEAR COMPONENTS
     public void cleanTextField()
     {
-        nameTextField.setText("");
-        IDTextField.setText("");
-        emailTextField.setText("");
-        passwordTextField.setText("");
-        countryTextField.setText("");
-        ageTextField.setText("");
-        numberRegistrationTextField.setText("");
-        businessNameTextField.setText("");
-        businessReasonTextField.setText("");
+        this.nameTextField.setText("");
+        this.IDTextField.setText("");
+        this.emailTextField.setText("");
+        this.passwordTextField.setText("");
+        this.countryTextField.setText("");
+        this.ageTextField.setText("");
+        this.numberRegistrationTextField.setText("");
+        this.businessNameTextField.setText("");
+        this.businessReasonTextField.setText("");
     }
+    //
     public boolean checkUserExistence(String ID, String email)
     {
         boolean userExist = false;
@@ -67,6 +73,7 @@ public class RegistryUserView extends javax.swing.JFrame {
         }
         return userExist;
     }
+    //
     public static boolean checkNumber(String ID)
     {
         boolean numbers = true;
@@ -79,17 +86,19 @@ public class RegistryUserView extends javax.swing.JFrame {
         }
         return numbers;
     }
+    //FOR TO SET VISIBLE INITIAL COMPONENTS FOR MERCHANT
     public void initialView()
     {
-        businessNameLabel.setVisible(false);
-        businessReasonLabel.setVisible(false);
-        numberRegistrationLabel.setVisible(false);
-        businessNameTextField.setVisible(false);
-        businessReasonTextField.setVisible(false);
-        numberRegistrationTextField.setVisible(false);
-        typeLabel.setVisible(true);
-        typeMerchantComboBox.setVisible(true);     
+        this.businessNameLabel.setVisible(false);
+        this.businessReasonLabel.setVisible(false);
+        this.numberRegistrationLabel.setVisible(false);
+        this.businessNameTextField.setVisible(false);
+        this.businessReasonTextField.setVisible(false);
+        this.numberRegistrationTextField.setVisible(false);
+        this.typeLabel.setVisible(true);
+        this.typeMerchantComboBox.setVisible(true);     
     }
+    //FOR TO SET VISIBLE COMPONENTS FOR MERCHANT
     public void viewJuristicMerchant()
     {
         businessNameLabel.setVisible(true);
@@ -99,12 +108,14 @@ public class RegistryUserView extends javax.swing.JFrame {
         businessReasonTextField.setVisible(true);
         numberRegistrationTextField.setVisible(true);
     }
+    //METHOD TO COMPLETE REGISTER
     public void completRegistry()
     {
         JOptionPane.showMessageDialog(null, "Successful Registration.");
         returnLoginView();
         this.setVisible(false);
     }
+    //METHOD FOR CREATE NEW USER
     public void createNewUser()
     {
         String name = nameTextField.getText();
@@ -117,6 +128,7 @@ public class RegistryUserView extends javax.swing.JFrame {
         String businessName = businessNameTextField.getText();
         String businessReason = businessReasonTextField.getText();
         int typeUser = typeMerchantComboBox.getSelectedIndex();
+        //VALIDATE EMPTY COMPONENTES
         if(checkSixSpace(name, email, password, ID, age, country))
         {
             if(checkNumber(age) == true)
@@ -145,13 +157,14 @@ public class RegistryUserView extends javax.swing.JFrame {
                         default:
                             break; 
                     }
-                completRegistry();
+                //FOR FINISH THE REGISTER
+                this.completRegistry();
                 }
             }else
             {
                 JOptionPane.showMessageDialog(null, "You entered some invalid data, try again");
-                IDTextField.setText("");
-                ageTextField.setText("");
+                this.IDTextField.setText("");
+                this.ageTextField.setText("");
             }
         }else
         {
@@ -219,6 +232,12 @@ public class RegistryUserView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 153, 153));
         jLabel2.setText("E-mail");
 
+        passwordTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordTextFieldKeyPressed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 153, 153));
         jLabel3.setText("Password:");
@@ -254,6 +273,11 @@ public class RegistryUserView extends javax.swing.JFrame {
                 typeMerchantComboBoxActionPerformed(evt);
             }
         });
+        typeMerchantComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                typeMerchantComboBoxKeyPressed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 153, 153));
@@ -263,17 +287,63 @@ public class RegistryUserView extends javax.swing.JFrame {
         typeLabel.setForeground(new java.awt.Color(0, 153, 153));
         typeLabel.setText("Type:");
 
+        nameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nameTextFieldKeyPressed(evt);
+            }
+        });
+
         ageTextField.setInheritsPopupMenu(true);
+        ageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ageTextFieldKeyPressed(evt);
+            }
+        });
+
+        emailTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                emailTextFieldKeyPressed(evt);
+            }
+        });
+
+        numberRegistrationTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                numberRegistrationTextFieldKeyPressed(evt);
+            }
+        });
+
+        countryTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                countryTextFieldKeyPressed(evt);
+            }
+        });
+
+        businessNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                businessNameTextFieldKeyPressed(evt);
+            }
+        });
 
         registryUserButton.setBackground(new java.awt.Color(255, 255, 255));
         registryUserButton.setForeground(new java.awt.Color(255, 255, 255));
         registryUserButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/AddUser.png"))); // NOI18N
         registryUserButton.setBorder(null);
         registryUserButton.setFocusable(false);
-        registryUserButton.setOpaque(false);
         registryUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registryUserButtonActionPerformed(evt);
+            }
+        });
+
+        businessReasonTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                businessReasonTextFieldKeyPressed(evt);
+            }
+        });
+
+        IDTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IDTextFieldKeyPressed(evt);
             }
         });
 
@@ -417,11 +487,12 @@ public class RegistryUserView extends javax.swing.JFrame {
         returnLoginView();
         this.setVisible(false);
     }//GEN-LAST:event_backMouseClicked
-
+    //
     private void registryUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registryUserButtonActionPerformed
-        createNewUser();
+        //CREATE NEW USER
+        this.createNewUser();
     }//GEN-LAST:event_registryUserButtonActionPerformed
-
+    //
     private void typeMerchantComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeMerchantComboBoxActionPerformed
         int  index = typeMerchantComboBox.getSelectedIndex();
         if(index == 0 || index == 1)
@@ -433,6 +504,72 @@ public class RegistryUserView extends javax.swing.JFrame {
             viewJuristicMerchant();
         }
     }//GEN-LAST:event_typeMerchantComboBoxActionPerformed
+    //
+    private void nameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.IDTextField.requestFocus();
+        }
+    }//GEN-LAST:event_nameTextFieldKeyPressed
+    //
+    private void IDTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.emailTextField.requestFocus();
+        }
+    }//GEN-LAST:event_IDTextFieldKeyPressed
+    //
+    private void emailTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.ageTextField.requestFocus();
+        }
+    }//GEN-LAST:event_emailTextFieldKeyPressed
+    //
+    private void ageTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.passwordTextField.requestFocus();
+        }
+    }//GEN-LAST:event_ageTextFieldKeyPressed
+    //
+    private void passwordTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.countryTextField.requestFocus();
+        }
+    }//GEN-LAST:event_passwordTextFieldKeyPressed
+    //
+    private void countryTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_countryTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.typeMerchantComboBox.requestFocus();
+        }
+    }//GEN-LAST:event_countryTextFieldKeyPressed
+    //
+    private void typeMerchantComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeMerchantComboBoxKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.numberRegistrationTextField.requestFocus();
+        }
+    }//GEN-LAST:event_typeMerchantComboBoxKeyPressed
+    //
+    private void numberRegistrationTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numberRegistrationTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.businessNameTextField.requestFocus();
+        }
+    }//GEN-LAST:event_numberRegistrationTextFieldKeyPressed
+    //
+    private void businessNameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_businessNameTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.businessReasonTextField.requestFocus();
+        }
+    }//GEN-LAST:event_businessNameTextFieldKeyPressed
+
+    private void businessReasonTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_businessReasonTextFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.registryUserButton.requestFocus();
+        }
+    }//GEN-LAST:event_businessReasonTextFieldKeyPressed
     /**
      * @param args the command line arguments
      */

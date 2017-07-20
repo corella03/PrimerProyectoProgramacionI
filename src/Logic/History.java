@@ -8,20 +8,23 @@ package Logic;
 import java.util.ArrayList;
 
 /**
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Karla Vanessa Ballestero Castro
+ ** @date 2017-06-15
  *
- * @author corella
  */
 public class History implements Transaction {
 
-    String userID;
-    int purchaseID;
-    ArrayList<PurchaseOrder> items = new ArrayList();
+    private String userID;
+    private int purchaseID;
+    private ArrayList<PurchaseOrder> items = new ArrayList();
     
     public History(String userID, int purchaseID) {
         this.userID = userID;
         this.purchaseID = purchaseID;
     }
-    
+    //
     @Override
     public void createPurchaseOrder(ArrayList<ShoppingCar> shoppingCar) {
         Product product;
@@ -39,7 +42,7 @@ public class History implements Transaction {
         }
         Globals.historyList.add(this);
     }
-    
+    //
     @Override
     public void executeTransaction(ArrayList<ShoppingCar> shoppingCar) {        
         Product product;
@@ -53,30 +56,29 @@ public class History implements Transaction {
         }
         shoppingCar.clear();
     }
-
+    //
     public String getUserID() {
         return userID;
     }
-
+    //
     public void setUserID(String userID) {
         this.userID = userID;
     }
-
+    //
     public int getPurchaseID() {
         return purchaseID;
     }
-
+    //
     public void setPurchaseID(int purchaseID) {
         this.purchaseID = purchaseID;
     }
-
+    //
     public ArrayList<PurchaseOrder> getItems() {
         return items;
     }
-
+    //
     public void setItems(ArrayList<PurchaseOrder> items) {
         this.items = items;
     }
-    
-    
+    //
 }

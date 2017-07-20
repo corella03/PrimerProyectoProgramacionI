@@ -17,35 +17,37 @@ public class JuristicMerchant extends Merchant {
     private String numberOfRegistration;
     private String businessName;
     private String businessReason;
-
+    
+    //CONSTRUCTOR
     public JuristicMerchant(String numberOfRegistration, String businessName, String businessReason, String name, String ID, int age, String email, String country, String password, int type) {
         super(name, ID, age, email, country, password, type);
         this.numberOfRegistration = numberOfRegistration;
         this.businessName = businessName;
         this.businessReason = businessReason;
     }
-
+    //
     public String getNumberOfRegistration() {
         return numberOfRegistration;
     }
-
+    //
     public String getBusinessName() {
         return businessName;
     }
-
+    //
     public String getBusinessReason() {
         return businessReason;
     }
-
+    //
     public void setNumberOfRegistration(String numberOfRegistration) {
         this.numberOfRegistration = numberOfRegistration;
     }
-
+    //
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
     }
-
+    //
     public void setBusinessReason(String businessReason) {
         this.businessReason = businessReason;
     }
+    //
 }

@@ -6,6 +6,7 @@
 package Interface;
 import Logic.Globals;
 import Logic.Product;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 /**
  **
@@ -21,31 +22,34 @@ public class ProductRegistryView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    //
     public void cleanSpaces()
     {
-        nameTextField.setText("");
-        codeTextField.setText("");
-        priceTextField.setText("");
-        amountSpinner.setToolTipText("");
+        this.nameTextField.setText("");
+        this.codeTextField.setText("");
+        this.priceTextField.setText("");
+        this.amountSpinner.setToolTipText("");
     }
+    //
     public void createProduct()
     {
-        String name = nameTextField.getText();
+        String name = this.nameTextField.getText();
         String sellerID = Globals.loggedUser.getID();
-        String code = codeTextField.getText();
-        String price = priceTextField.getText();
-        String amount = (String) amountSpinner.getNextValue().toString();
-        String productStatus = (String) statusComboBox.getSelectedItem();
+        String code = this.codeTextField.getText();
+        String price = this.priceTextField.getText();
+        String amount = (String) this.amountSpinner.getNextValue().toString();
+        String productStatus = (String) this.statusComboBox.getSelectedItem();
         if(RegistryUserView.checkThreeSpace(name, code, price))
         {
             if(RegistryUserView.checkNumber(price) == true)
             {
+                //LOAD PRODUCT CONSTRUCTOR
                 Product newProduct = new Product(code, name, Integer.parseInt(price), Integer.parseInt(amount)-1, productStatus, sellerID);
                 Globals.productList.add(newProduct);
             }else
             {
                 JOptionPane.showMessageDialog(null, "You entered some invalid data, try again");
-                priceTextField.setText("");
+                this.priceTextField.setText("");
             }
         }else
         {
@@ -106,6 +110,24 @@ public class ProductRegistryView extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 153, 153));
         jLabel8.setText("Product Status:");
 
+        codeTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                codeTextFieldKeyPressed(evt);
+            }
+        });
+
+        nameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nameTextFieldKeyPressed(evt);
+            }
+        });
+
+        priceTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                priceTextFieldKeyPressed(evt);
+            }
+        });
+
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "New", "Used" }));
 
         productRegistryButton.setBackground(new java.awt.Color(0, 153, 153));
@@ -115,6 +137,11 @@ public class ProductRegistryView extends javax.swing.JFrame {
         productRegistryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productRegistryButtonActionPerformed(evt);
+            }
+        });
+        productRegistryButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                productRegistryButtonKeyPressed(evt);
             }
         });
 
@@ -137,18 +164,17 @@ public class ProductRegistryView extends javax.swing.JFrame {
                     .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(79, 79, 79))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                        .addComponent(productRegistryButton)
-                        .addGap(92, 92, 92))
                     .addGroup(jPanelLayout.createSequentialGroup()
                         .addComponent(amountSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(productRegistryButton)
+                            .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel7)
+                                .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(79, 79, 79))))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,22 +194,19 @@ public class ProductRegistryView extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(codeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(productRegistryButton)))
-                .addGap(106, 106, 106))
+                    .addComponent(productRegistryButton))
+                .addGap(112, 112, 112))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(null);
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/return.png"))); // NOI18N
@@ -214,8 +237,34 @@ public class ProductRegistryView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jMenu1MouseClicked
     private void productRegistryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productRegistryButtonActionPerformed
+        //METHOD CREATE PRODUCT
         createProduct();
     }//GEN-LAST:event_productRegistryButtonActionPerformed
+    //
+    private void nameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//CHANGE FOCUS IN ENTER KEY
+            this.amountSpinner.requestFocus();
+        }
+    }//GEN-LAST:event_nameTextFieldKeyPressed
+    //
+    private void codeTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//CHANGE FOCUS IN ENTER KEY
+            this.statusComboBox.requestFocus();
+        }
+    }//GEN-LAST:event_codeTextFieldKeyPressed
+    //
+    private void priceTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceTextFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//CHANGE FOCUS IN ENTER KEY
+            this.productRegistryButton.requestFocus();
+        }
+    }//GEN-LAST:event_priceTextFieldKeyPressed
+    //
+    private void productRegistryButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productRegistryButtonKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {//CHANGE FOCUS IN ENTER KEY
+            //LOAD CREATE PRODUCT
+            this.createProduct();
+        }
+    }//GEN-LAST:event_productRegistryButtonKeyPressed
     /**
      * @param args the command line arguments
      */

@@ -20,6 +20,7 @@ public class QualifyView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    //METHOD TO SELECT STARS IMAGENES
     public void selectStars()
     {
         switch (starsSlider.getValue()) {
@@ -170,7 +171,8 @@ public class QualifyView extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_qualifyButtonActionPerformed
     private void starsSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_starsSliderStateChanged
-        selectStars();
+        //
+        this.selectStars();
     }//GEN-LAST:event_starsSliderStateChanged
     /**
      * @param args the command line arguments

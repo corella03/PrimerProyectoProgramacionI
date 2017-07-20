@@ -11,8 +11,10 @@ package Logic;
  ** @date 2017-06-15
  **/
 public class Merchant extends User{
+    
+    //CONTRUCTOR
     public Merchant(String name, String ID, int age, String email, String country, String password, int type) {
         super(name, ID, age, email, country, password, type);
     }
-    
+    //
 }

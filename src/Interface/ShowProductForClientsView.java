@@ -35,6 +35,8 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         getTable();
+        //
+        showProductsForClientsTable.setRowSelectionInterval(0, 0);//AUTO SELECT ROW IN JTABLE
     }
 
     public void setTable() {
@@ -244,11 +246,12 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
     }//GEN-LAST:event_listCarButtonActionPerformed
 
     private void shoppingCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoppingCarButtonActionPerformed
+        //FALTA VALIDAR QUE NO SE HAYAN SELECCIONADO NINGUN VALOR EN LA TABLA.. ESO PORQUE NO
+        //SE DEVE PASAR POR LOS SIGUIENTE SI NO SE HAN SELECCIONADO NINGUNA FILA
         String quantity = JOptionPane.showInputDialog("Quantity?");
         if (!quantity.isEmpty() || !quantity.equals("0")){
             sendToShoppingCar(Integer.parseInt(quantity));
         }
-
     }//GEN-LAST:event_shoppingCarButtonActionPerformed
     /**
      * @param args the command line arguments

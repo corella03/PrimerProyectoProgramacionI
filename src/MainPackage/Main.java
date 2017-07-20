@@ -17,8 +17,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //INSTANCE OF LOGIN VIEW
         LoginView login = new LoginView();
         login.setVisible(true);
-       Burned.burnedUsersAndProducts();
+        //LOADING DETAILED DATA
+        Burned.burnedUsersAndProducts();
     }   
 }

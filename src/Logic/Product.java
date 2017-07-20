@@ -5,8 +5,6 @@
  */
 package Logic;
 
-import java.util.ArrayList;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -23,6 +21,7 @@ public class Product {
     private String productStatus;
     private String sellerID;
 
+    //CONSTRUCTOR
     public Product(String code, String name, int price, int amount, String productStatus, String sellerID) {
         this.code = code;
         this.name = name;
@@ -31,7 +30,7 @@ public class Product {
         this.productStatus = productStatus;
         this.sellerID = sellerID;
     }
-        
+    //METHOD RETURN NAME OF SELLER BY ID
     public String sellerNameByID(String sellerID){
         String sellerName = "";
         for (User user : Globals.userList) {
@@ -42,53 +41,53 @@ public class Product {
         }
         return sellerName;
     }
-
+    //
     public String getCode() {
         return code;
     }
-
+    //
     public String getName() {
         return name;
     }
-
+    //
     public int getPrice() {
         return price;
     }
-
+    //
     public int getAmountAvailable() {
         return amountAvailable;
     }
-
+    //
     public String getProductStatus() {
         return productStatus;
     }
-
+    //
     public String getSellerID() {
         return sellerID;
     }
-
+    //
     public void setCode(String code) {
         this.code = code;
     }
-
+    //
     public void setName(String name) {
         this.name = name;
     }
-
+    //
     public void setPrice(int price) {
         this.price = price;
     }
-
+    //
     public void setAmountAvailable(int amountAvailable) {
         this.amountAvailable = amountAvailable;
     }
-
+    //
     public void setProductStatus(String productStatus) {
         this.productStatus = productStatus;
     }
-
+    //
     public void setSellerID(String sellerID) {
         this.sellerID = sellerID;
     }
-
+    //
 }

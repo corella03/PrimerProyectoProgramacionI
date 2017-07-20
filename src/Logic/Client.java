@@ -18,5 +18,4 @@ public class Client extends User {
     public Client(String name, String ID, int age, String email, String country, String password, int type) {
         super(name, ID, age, email, country, password, type);
     }
-
 }

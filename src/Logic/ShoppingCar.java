@@ -6,33 +6,37 @@
 package Logic;
 
 /**
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Karla Vanessa Ballestero Castro
+ ** @date 2017-06-21
  *
- * @author corella
  */
 public class ShoppingCar {
     
-    Product product;
-    int shoppingAmount;
-
+    private Product product;
+    private int shoppingAmount;
+    
+    //CONTRUCTOR
     public ShoppingCar(Product product, int shoppingAmount) {
         this.product = product;
         this.shoppingAmount = shoppingAmount;
     }
-
+    //
     public Product getProduct() {
         return product;
     }
-
+    //
     public void setProduct(Product product) {
         this.product = product;
     }
-
+    //
     public int getShoppingAmount() {
         return shoppingAmount;
     }
-
+    //
     public void setShoppingAmount(int shoppingAmount) {
         this.shoppingAmount = shoppingAmount;
     }
-    
+    //
 }

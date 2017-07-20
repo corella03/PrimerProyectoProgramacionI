@@ -8,10 +8,15 @@ package Logic;
 import java.util.ArrayList;
 
 /**
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Karla Vanessa Ballestero Castro
+ ** @date 2017-06-21
  *
- * @author corella
  */
 public interface Transaction {
+    //
     public void createPurchaseOrder(ArrayList<ShoppingCar> shoppingCar);
     public void executeTransaction(ArrayList<ShoppingCar> shoppingCar);
+    //
 }

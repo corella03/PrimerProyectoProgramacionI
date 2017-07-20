@@ -22,31 +22,31 @@ public class Globals {
     public static List<History> historyList = new ArrayList<>();
     public static User loggedUser;
     public static int purchaseCode = 0;
+    public static int optionsMerchant;
+    public static int returnOptions;
 
     public static int getPurchaseCode() {
         return purchaseCode;
     }
-
+    //
     public static void setPurchaseCode() {
         Globals.purchaseCode++;
     }
-    public static int optionsMerchant;
-    public static int returnOptions;
-
+    //
     public static int getOptionsMerchant() {
-
         return optionsMerchant;
     }
-
+    //
     public static int getReturnOptions() {
         return returnOptions;
     }
-
+    //
     public static void setOptionsMerchant(int optionsMerchant) {
         Globals.optionsMerchant = optionsMerchant;
     }
-
+    //
     public static void setReturnOptions(int returnOptions) {
         Globals.returnOptions = returnOptions;
     }
+    //
 }
