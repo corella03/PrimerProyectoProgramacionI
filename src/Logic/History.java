@@ -18,7 +18,7 @@ public class History implements Transaction {
 
     private String userID;
     private int purchaseID;
-    private ArrayList<PurchaseOrder> items = new ArrayList();
+    private static ArrayList<PurchaseOrder> items = new ArrayList();
     
     public History(String userID, int purchaseID) {
         this.userID = userID;

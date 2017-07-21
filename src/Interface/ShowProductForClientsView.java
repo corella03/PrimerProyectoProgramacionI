@@ -37,14 +37,25 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
         getTable();
         //
         showProductsForClientsTable.setRowSelectionInterval(0, 0);//AUTO SELECT ROW IN JTABLE
+        //FOR SELECT ROW 0 IF EXISTS
+        //IF EXISTS ROWS GET THE VALUES IN START 
+        int i = showProductsForClientsTable.getSelectedRow();
+        if (i >= 0) {
+            sellers = (showProductsForClientsTable.getValueAt(i, 0).toString());
+            name = (showProductsForClientsTable.getValueAt(i, 1).toString());
+            code = (showProductsForClientsTable.getValueAt(i, 2).toString());
+            price = (showProductsForClientsTable.getValueAt(i, 3).toString());
+            amount = (showProductsForClientsTable.getValueAt(i, 4).toString());
+            status = (showProductsForClientsTable.getValueAt(i, 5).toString());
+        }
     }
-
+    //
     public void setTable() {
         showProductsForClientsTable.addMouseListener(new MouseAdapter() {
             DefaultTableModel model = new DefaultTableModel();
 
-            @Override
             public void mouseClicked(MouseEvent e) {
+                //GET THE VALUR ON CLICKED
                 int i = showProductsForClientsTable.getSelectedRow();
                 sellers = (showProductsForClientsTable.getValueAt(i, 0).toString());
                 name = (showProductsForClientsTable.getValueAt(i, 1).toString());
@@ -55,15 +66,16 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
             }
         });
     }
-
+    //
     public static void shoppingCarWindows() {
+        //LOAD VIEW SHOOPING
         ShoppingCarView shoppingView = new ShoppingCarView();
         shoppingView.setVisible(true);
 
     }
-
+    //
     public void getTable() {
-        setTable();
+        setTable();//SET TABLE DATA
         Product product;
         int listSize = Globals.productList.size();
         String tableArray[][] = new String[listSize][6];
@@ -84,15 +96,18 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
                 }
         ));
     }
-
+    //
     public void sendToShoppingCar(int quantity) {
-        User user = Globals.loggedUser;
-        for (Product product : Globals.productList) {
-            if (product.getCode().equals(code)) {
-                ShoppingCar sc = new ShoppingCar(product, quantity);
-                user.shoppingCar.add(sc);
-                Size.setText(String.valueOf(user.shoppingCar.size()));
+        try {
+            User user = Globals.loggedUser;
+            for (Product product : Globals.productList) {
+                if (product.getCode().equals(code)) {
+                    ShoppingCar sc = new ShoppingCar(product, quantity);
+                    user.shoppingCar.add(sc);
+                    Size.setText(String.valueOf(user.shoppingCar.size()));
+                }
             }
+        } catch (Exception e) {
         }
     }
 
@@ -127,19 +142,23 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
             new String [] {
                 "Seller", "Name", "Code", "Price", "Amount", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         showProductsForClientsTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         showProductsForClientsTable.setDropMode(javax.swing.DropMode.INSERT);
-        showProductsForClientsTable.setGridColor(new java.awt.Color(255, 255, 255));
+        showProductsForClientsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showProductsForClientsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(showProductsForClientsTable);
-        if (showProductsForClientsTable.getColumnModel().getColumnCount() > 0) {
-            showProductsForClientsTable.getColumnModel().getColumn(0).setHeaderValue("Seller");
-            showProductsForClientsTable.getColumnModel().getColumn(1).setHeaderValue("Name");
-            showProductsForClientsTable.getColumnModel().getColumn(2).setHeaderValue("Code");
-            showProductsForClientsTable.getColumnModel().getColumn(3).setHeaderValue("Price");
-            showProductsForClientsTable.getColumnModel().getColumn(4).setHeaderValue("Amount");
-            showProductsForClientsTable.getColumnModel().getColumn(5).setHeaderValue("Status");
-        }
 
         shoppingCarButton.setBackground(new java.awt.Color(0, 153, 153));
         shoppingCarButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -207,10 +226,8 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(null);
 
-        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setBorder(null);
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/return.png"))); // NOI18N
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -248,11 +265,25 @@ public class ShowProductForClientsView extends javax.swing.JFrame {
     private void shoppingCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shoppingCarButtonActionPerformed
         //FALTA VALIDAR QUE NO SE HAYAN SELECCIONADO NINGUN VALOR EN LA TABLA.. ESO PORQUE NO
         //SE DEVE PASAR POR LOS SIGUIENTE SI NO SE HAN SELECCIONADO NINGUNA FILA
-        String quantity = JOptionPane.showInputDialog("Quantity?");
-        if (!quantity.isEmpty() || !quantity.equals("0")){
-            sendToShoppingCar(Integer.parseInt(quantity));
+        try {
+            String quantity = JOptionPane.showInputDialog("Quantity?");
+            if (!quantity.isEmpty() || !quantity.equals("0")){
+                sendToShoppingCar(Integer.parseInt(quantity));
+            }
+        } catch (Exception e) {
         }
+        
     }//GEN-LAST:event_shoppingCarButtonActionPerformed
+
+    private void showProductsForClientsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showProductsForClientsTableMouseClicked
+        int i = showProductsForClientsTable.getSelectedRow();
+        sellers = (showProductsForClientsTable.getValueAt(i, 0).toString());
+        name = (showProductsForClientsTable.getValueAt(i, 1).toString());
+        code = (showProductsForClientsTable.getValueAt(i, 2).toString());
+        price = (showProductsForClientsTable.getValueAt(i, 3).toString());
+        amount = (showProductsForClientsTable.getValueAt(i, 4).toString());
+        status = (showProductsForClientsTable.getValueAt(i, 5).toString());
+    }//GEN-LAST:event_showProductsForClientsTableMouseClicked
     /**
      * @param args the command line arguments
      */
